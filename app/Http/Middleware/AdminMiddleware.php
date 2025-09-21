@@ -13,6 +13,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/login')->withErrors(['login' => 'Access denied.']);
+        return redirect('/login')->withErrors(['login' => 'Access deniedyoru.']);
     }
 }

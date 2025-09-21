@@ -26,10 +26,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Admin Dashboard
 Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth.admin');
+    return view('admindashboard');
+});
 
 // Tenant Dashboard
 Route::get('/tenant/dashboard', function () {
-    return view('tenant.dashboard');
-})->middleware('auth.tenant');
+    return view('tenandashboard');
+});

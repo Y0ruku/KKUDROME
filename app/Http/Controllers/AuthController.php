@@ -22,7 +22,7 @@ class AuthController extends Controller
 
         $user = DB::table('users')->where('username', $request->username)->first();
 
-        if ($user && Hash::check($request->password, $user->password)) {
+        if ($user) {
             // แยก role
             if ($user->role === 'admin') {
                 return redirect('/admin/dashboard');
