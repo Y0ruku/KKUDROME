@@ -33,3 +33,5 @@ Route::get('/admin/dashboard', function () {
 Route::get('/tenant/dashboard', function () {
     return view('tenandashboard');
 });
+
+//->middleware('auth'); แก้ตรงนี้
