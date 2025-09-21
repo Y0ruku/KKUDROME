@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  @vite('resources/css/app.css')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">เข้าสู่ระบบ</h2>
+        
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
 
-  <div class="flex bg-white rounded-xl shadow-lg overflow-hidden w-[800px]">
-      <!-- Left Form -->
-      <div class="w-1/2 p-10 flex flex-col justify-center">
-          <h2 class="text-2xl font-bold text-center mb-6">Welcome</h2>
+        <form method="POST" action="/login">
+            @csrf
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">
+                    ชื่อผู้ใช้
+                </label>
+                <input type="text" 
+                       id="username" 
+                       name="username" 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       value="{{ old('username') }}" 
+                       required>
+            </div>
 
-          @if ($errors->any())
-              <div class="mb-4 text-red-600">
-                  {{ $errors->first() }}
-              </div>
-          @endif
+            <div class="mb-6">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">
+                    รหัสผ่าน
+                </label>
+                <input type="password" 
+                       id="password" 
+                       name="password" 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       required>
+            </div>
 
-          <form action="{{ url('/login') }}" method="POST" class="space-y-4">
-              @csrf
-              <div>
-                  <label for="username" class="block text-sm font-medium">Username / Room ID</label>
-                  <input type="text" name="username" id="username"
-                      class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:ring focus:ring-indigo-200">
-              </div>
-              <div>
-                  <label for="password" class="block text-sm font-medium">Password</label>
-                  <input type="password" name="password" id="password"
-                      class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:ring focus:ring-indigo-200">
-              </div>
-              <button type="submit"
-                  class="w-full bg-indigo-600 text-white py-2 rounded-lg shadow hover:bg-indigo-700 transition">
-                  Log in
-              </button>
-          </form>
-      </div>
+            <button type="submit" 
+                    class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+                เข้าสู่ระบบ
+            </button>
+        </form>
 
-      <!-- Right Image -->
-      <div class="w-1/2">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-               alt="House" class="h-full w-full object-cover">
-      </div>
-  </div>
-
+        <div class="mt-6 text-sm text-gray-600">
+            <p class="text-center font-semibold">ข้อมูลทดสอบ:</p>
+            <div class="mt-2 bg-gray-50 p-3 rounded">
+                <p><strong>Admin:</strong> username: admin, password: admin123</p>
+                <p><strong>Tenant:</strong> username: tenant, password: tenant123</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

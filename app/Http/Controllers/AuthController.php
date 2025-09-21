@@ -27,13 +27,17 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'password' => 'required',
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ], [
+            'username.required' => 'กรุณากรอกชื่อผู้ใช้',
+            'password.required' => 'กรุณากรอกรหัสผ่าน',
         ]);
 
         $username = $request->username;
         $password = $request->password;
 
+        // ตรวจสอบข้อมูลผู้ใช้
         $user = DB::table('users')
             ->where('username', $username)
             ->where('password', $password)
@@ -43,14 +47,15 @@ class AuthController extends Controller
             $userModel = User::find($user->id);
             Auth::login($userModel);
             
+            // redirect ตาม role
             if ($user->role === 'admin') {
-                return redirect('/admin/dashboard');
+                return redirect()->intended('/admin/dashboard');
             } elseif ($user->role === 'tenant') {
-                return redirect('/tenant/dashboard');
+                return redirect()->intended('/tenant/dashboard');
             }
         }
 
-        return back()->withErrors(['error' => 'Username หรือ Password ไม่ถูกต้อง']);
+        return back()->withErrors(['error' => 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'])->withInput($request->only('username'));
     }
 
     public function logout(Request $request)
@@ -59,6 +64,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         
-        return redirect('/login');
+        return redirect('/login')->with('success', 'ออกจากระบบเรียบร้อยแล้ว');
     }
 }
