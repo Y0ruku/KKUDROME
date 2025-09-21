@@ -31,7 +31,7 @@
       <!-- Admin Menu -->
       <div class="grid grid-cols-1 gap-4 mt-8">
         <button class="bg-indigo-500 hover:bg-indigo-600 text-white py-3 px-6 rounded-lg">
-          จัดการผู้ใช้
+          ผู้เช่าหอพัก
         </button>
         <button class="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg">
           จัดการห้องพัก
