@@ -17,5 +17,5 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/test', function () {return view('test');});
+Route::get('/mainuser', function () {return view('mainuser');});
 
