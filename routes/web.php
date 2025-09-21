@@ -18,27 +18,27 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-// Login Routes (ต้องเป็น guest เท่านั้น)
+// Login Routes (สำหรับผู้ที่ยังไม่ได้ login)
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
 });
 
-// Protected Routes
+// Protected Routes (สำหรับผู้ที่ login แล้ว)
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     
-    // Admin Routes
+    // Admin Routes - ใช้ชื่อไฟล์ที่มีอยู่จริง
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/dashboard', function () {
-            return view('admin.dashboard');
+            return view('admindashboard'); // เปลี่ยนจาก admin.dashboard เป็น admindashboard
         })->name('admin.dashboard');
     });
 
-    // Tenant Routes  
+    // Tenant Routes - ใช้ชื่อไฟล์ที่มีอยู่จริง
     Route::middleware(['tenant'])->group(function () {
         Route::get('/tenant/dashboard', function () {
-            return view('tenant.dashboard');
+            return view('tenantdashboard'); // เปลี่ยนจาก tenant.dashboard เป็น tenantdashboard
         })->name('tenant.dashboard');
     });
 });
