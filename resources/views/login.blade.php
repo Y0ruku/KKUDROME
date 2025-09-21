@@ -50,10 +50,9 @@
         </form>
 
         <div class="mt-6 text-sm text-gray-600">
-            <p class="text-center font-semibold">ข้อมูลทดสอบ:</p>
+        
             <div class="mt-2 bg-gray-50 p-3 rounded">
-                <p><strong>Admin:</strong> username: admin, password: admin123</p>
-                <p><strong>Tenant:</strong> username: tenant, password: tenant123</p>
+               
             </div>
         </div>
     </div>
