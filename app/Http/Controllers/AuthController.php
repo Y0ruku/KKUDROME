@@ -21,26 +21,41 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // เช็คจาก database ตรงๆ (plain text)
+        // Debug: แสดงข้อมูลที่ส่งมา
+        echo "Username: " . $request->username . "";
+        echo "Password: " . $request->password . "";
+
+        // เช็คจาก database
         $user = DB::table('users')
             ->where('username', $request->username)
             ->where('password', $request->password)
             ->first();
 
+        // Debug: แสดงผลลัพธ์
+        echo "User found: ";
+        var_dump($user);
+        echo "";
+
         if ($user) {
-            // Login user เข้าระบบ
-            Auth::loginUsingId($user->id);
-            $request->session()->regenerate();
+            echo "Role: " . $user->role . "";
             
-            // แยก role
+            // สร้าง User model และ login
+            $userModel = User::find($user->id);
+            Auth::login($userModel);
+            
+            // Redirect ตาม role
             if ($user->role === 'admin') {
+                echo "Redirecting to admin dashboard...";
                 return redirect('/admin/dashboard');
-            } else {
+            } elseif ($user->role === 'tenant') {
+                echo "Redirecting to tenant dashboard...";
                 return redirect('/tenant/dashboard');
             }
+        } else {
+            echo "No user found!";
         }
 
-        return back()->withErrors(['login' => 'Invalid Username or Password']);
+        return back()->withErrors(['login' => 'Username หรือ Password ไม่ถูกต้อง']);
     }
 
     public function logout(Request $request)
