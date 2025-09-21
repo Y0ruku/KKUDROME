@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class TenantMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
@@ -14,7 +14,7 @@ class AdminMiddleware
             return redirect('/login');
         }
 
-        if (Auth::user()->role !== 'admin') {
+        if (Auth::user()->role !== 'tenant') {
             return redirect('/login')->withErrors(['error' => 'Access denied']);
         }
 

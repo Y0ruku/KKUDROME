@@ -65,9 +65,9 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-
-        'auth.admin' => \App\Http\Middleware\AdminMiddleware::class,
-        'auth.tenant' => \App\Http\Middleware\TenanMiddleware::class,
-
+        
+        // เพิ่มบรรทัดเหล่านี้
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'tenant' => \App\Http\Middleware\TenantMiddleware::class,
     ];
 }

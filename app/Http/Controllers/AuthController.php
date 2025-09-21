@@ -11,6 +11,16 @@ class AuthController extends Controller
 {
     public function showLogin()
     {
+        // ถ้า login แล้วให้ redirect ตาม role
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->role === 'admin') {
+                return redirect('/admin/dashboard');
+            } elseif ($user->role === 'tenant') {
+                return redirect('/tenant/dashboard');
+            }
+        }
+        
         return view('login');
     }
 
@@ -21,41 +31,26 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Debug: แสดงข้อมูลที่ส่งมา
-        echo "Username: " . $request->username . "";
-        echo "Password: " . $request->password . "";
+        $username = $request->username;
+        $password = $request->password;
 
-        // เช็คจาก database
         $user = DB::table('users')
-            ->where('username', $request->username)
-            ->where('password', $request->password)
+            ->where('username', $username)
+            ->where('password', $password)
             ->first();
 
-        // Debug: แสดงผลลัพธ์
-        echo "User found: ";
-        var_dump($user);
-        echo "";
-
         if ($user) {
-            echo "Role: " . $user->role . "";
-            
-            // สร้าง User model และ login
             $userModel = User::find($user->id);
             Auth::login($userModel);
             
-            // Redirect ตาม role
             if ($user->role === 'admin') {
-                echo "Redirecting to admin dashboard...";
                 return redirect('/admin/dashboard');
             } elseif ($user->role === 'tenant') {
-                echo "Redirecting to tenant dashboard...";
                 return redirect('/tenant/dashboard');
             }
-        } else {
-            echo "No user found!";
         }
 
-        return back()->withErrors(['login' => 'Username หรือ Password ไม่ถูกต้อง']);
+        return back()->withErrors(['error' => 'Username หรือ Password ไม่ถูกต้อง']);
     }
 
     public function logout(Request $request)
