@@ -17,9 +17,13 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+<<<<<<< HEAD
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+=======
+Route::get('/mainuser', function () {return view('mainuser');});
+>>>>>>> 3661484be6a2851dbebb8a36e874bdac2b7caaf3
 
 // Admin Dashboard
 Route::get('/admin/dashboard', function () {
