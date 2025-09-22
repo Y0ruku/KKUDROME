@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Station - TheGreatHouse</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class=" bg-white/30 bg-[url('https://accessnsite.com/wp-content/uploads/2020/05/page-heading-background-contact-us.jpg')] bg-cover bg-center bg-blend-overlay min-h-screen">
+
+  <!-- Header Navigation -->
+  <header class="bg-black/60 text-white px-6 py-6">
+    <nav class="relative flex items-center">
+      <!-- Logo อยู่ซ้าย -->
+      <div class="text-white text-lg font-semibold">TheGreatHouse</div>
+
+      <!-- Menu อยู่ตรงกลาง -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 flex space-x-6 text-sm">
+        <a href="/contact" class="hover:text-gray-300 underline">maintenance</a>
+        <a href="#" class="hover:text-gray-300 underline">Me</a>
+        <a href="/mainuser" class="hover:text-gray-300 underline">Home</a>
+        <a href="/contact" class="hover:text-gray-300 underline">about</a>
+        <a href="#" class="hover:text-gray-300 underline">payment</a>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- Main Content -->
+  <main class="flex justify-center items-center py-8  mx-auto">
+    <div class="bg-white rounded-2xl shadow-xl p-12 w-full max-w-5xl mx-4 h-[600px]">
+      <!-- Back Button -->
+      <div class="flex items-center ">
+        <button class="p-2 hover:bg-gray-100 rounded-full">
+          <a href="/mainuser"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+          </a>
+        </button>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-14 ">Payment Station</h1>
+
+      <!-- Payment Details -->
+      <div class="space-y-12">
+        <!-- Left Side - Months -->
+        <div class="grid grid-cols-2 gap-8">
+          <div class="space-y-4">
+            <h3 class="font-semibold text-gray-800 text-xl">ประจำเดือน</h3>
+            <div class="space-y-2 text-gray-700 text-lg">
+              <div>1 กรกฎาคม 2568</div>
+              <div>1 สิงหาคม 2568</div>
+            </div>
+          </div>
+
+          <!-- Right Side - Amounts -->
+          <div class="space-y-4 text-right">
+            <h3 class="font-semibold text-gray-800 text-xl">ยอดค้างชำระ</h3>
+            <div class="space-y-2 text-gray-700 text-lg">
+              <div>5,800  <span> บาท</span></div>
+              <div>5,754  <span> บาท</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-300 my-8 "></div>
+
+        <!-- Total and Pay Button -->
+        <div class="flex justify-between items-center text-lg  ">
+          <div class="text-lg font-semibold text-gray-800">
+            รวม 11,554 บาท
+          </div>
+          <button id="payButton" class="bg-purple-500 hover:bg-purple-600 text-white px-8 py-2 rounded-lg font-medium transition duration-200">
+            ชำระเงิน
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl mx-4 h-[650px] relative mt-10">
+      <!-- Close Button -->
+      <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="p-6 border-b">
+        <h2 class="text-xl font-bold text-gray-800">Payment Station</h2>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="p-8 flex h-[calc(100%-100px)]">
+        <!-- Left Side - QR Code -->
+        <div class="flex-1 flex flex-col items-center justify-center pr-12">
+          <!-- QR Code Image -->
+          <div class="mb-6 b-1">
+            <img src="/pic/qrcode.jpg"
+              alt="QR Code"
+              class="w-65 h-72 object-contain border border-gray-200 border-2 rounded-lg shadow-sm">
+          </div>
+
+          <!-- Payment Details -->
+          <div class="text-center">
+            <div class="text-2xl font-bold text-gray-800 mb-2">ห้อง 607</div>
+            <div class="text-lg text-gray-600 mb-1">ยอดชำระ: <span class="font-semibold text-gray-800">11,554 บาท</span></div>
+            <div class="text-sm text-gray-500">สแกน QR Code เพื่อชำระเงิน</div>
+          </div>
+        </div>
+
+        <!-- Divider Line -->
+        <div class="w-px bg-gray-300 mx-8"></div>
+
+        <!-- Right Side - Upload Slip -->
+        <div class="flex-1 flex flex-col">
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold text-gray-800 mb-8 text-center">กรุณาอัปโหลดสลิปเพื่อยืนยันการชำระเงิน</h3>
+
+            <!-- Upload Area -->
+            <div class="border-2 border-dashed border-gray-300 rounded-xl p-12 text-center mb-8 hover:border-gray-400 transition-colors">
+              <div class="mb-6">
+                <svg class="mx-auto h-16 w-16 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                  <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="mb-4">
+                <p class="text-lg text-gray-600 mb-2">วางไฟล์ที่นี่ หรือคลิกเพื่อเลือกไฟล์</p>
+                <p class="text-sm text-gray-500">รองรับไฟล์ JPG, PNG, PDF (ขนาดไม่เกิน 10MB)</p>
+              </div>
+              <div class="flex items-center justify-center">
+                <input type="file" class="hidden" id="fileUpload" accept="image/*,.pdf">
+                <label for="fileUpload" class="bg-blue-500 text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-blue-600 transition duration-200 font-medium">
+                  เลือกไฟล์
+                </label>
+              </div>
+            </div>
+
+            <!-- File Preview Area -->
+            <div id="filePreview" class="hidden mb-6">
+              <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+                <div class="flex items-center">
+                  <svg class="w-8 h-8 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span id="fileName" class="text-gray-700 font-medium"></span>
+                </div>
+                <button id="removeFile" class="text-red-500 hover:text-red-700">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="flex justify-center space-x-4">
+            <button id="cancelButton" class="bg-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-400 transition duration-200 font-medium">
+              ยกเลิก
+            </button>
+            <button id="submitButton" class="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition duration-200 font-medium disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>
+              ส่งข้อมูล
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const payButton = document.getElementById('payButton');
+    const paymentModal = document.getElementById('paymentModal');
+    const closeModal = document.getElementById('closeModal');
+
+    // Open Modal
+    payButton.addEventListener('click', () => {
+      paymentModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // ป้องกันการเลื่อนหน้าหลัก
+    });
+
+    // Close Modal
+    closeModal.addEventListener('click', () => {
+      paymentModal.classList.add('hidden');
+      document.body.style.overflow = 'auto'; // คืนค่าการเลื่อน
+    });
+
+    // Close modal when clicking outside
+    paymentModal.addEventListener('click', (e) => {
+      if (e.target === paymentModal) {
+        paymentModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+
+</body>
+
+</html>

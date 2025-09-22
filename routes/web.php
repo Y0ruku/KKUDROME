@@ -18,6 +18,13 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+    // Routes อื่น ๆ สำหรับผู้ใช้
+    Route::get('/mainuser', function () {return view('mainuser');});
+    Route::get('/contact', function () {return view('contact');});
+    Route::get('/news', function () {return view('news');});
+    Route::get('/payment', function () {return view('payment');});
+    Route::get('/profile', function () {return view('profile');});
+
 // Login Routes (สำหรับผู้ที่ยังไม่ได้ login)
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -42,16 +49,6 @@ Route::middleware(['auth'])->group(function () {
         })->name('tenant.dashboard');
     });
 
-    // Routes อื่น ๆ สำหรับผู้ใช้
-    Route::get('/mainuser', function () {
-        return view('mainuser');
-    });
-    Route::get('/contact', function () {
-        return view('contact');
-    });
-    Route::get('/news', function () {
-        return view('news');
-    });
 
     Route::middleware([
         'auth:sanctum',

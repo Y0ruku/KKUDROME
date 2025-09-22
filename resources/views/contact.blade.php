@@ -22,13 +22,13 @@
                         <li><a href="#" class="hover:text-blue-300 underline">Me</a></li>
                         <li><a href="/mainuser" class="hover:text-blue-300 underline">Home</a></li>
                         <li><a href="#" class="hover:text-blue-300 underline">about</a></li>
-                        <li><a href="#" class="hover:text-blue-300 underline">payment</a></li>
+                        <li><a href="payment" class="hover:text-blue-300 underline">payment</a></li>
                     </ul>
                 </div>
             </nav>
             
-            <!-- Hero Section -->
-            <div class="text-center py-20 ">
+            <!--Page name-->
+            <div class="text-center py-20  ">
                 <h2 class="text-4xl font-bold mb-8 pt-17 ">Contact Us</h2>
             </div>
         </div>
@@ -38,7 +38,7 @@
     <main class="container mx-auto px-4 py-16">
         <div class="text-center mb-16">
             <p class="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
-                We're here to help, just get in touch anytime you need support.
+                We're here to help, just get in touch anytime you need support...
             </p>
         </div>
 
@@ -58,7 +58,7 @@
             </div>
         </div>
                 <!-- Contact Form -->
-        <div class="max-w-lg mx-auto pt-12 transition duration-200 transform hover:scale-105 ">
+        <div class="max-w-lg mx-auto pt-12 transition duration-200 transform hover:scale-105 mt-16">
             <div class="bg-white rounded-lg shadow-lg p-5 border border-gray-200">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Send us a message</h3>
                 
