@@ -17,7 +17,7 @@
       <nav class="space-x-4 hidden sm:block ">
         <a href="#" class="hover:underline">Me</a>
         <a href="#" class="hover:underline">Home</a>
-        <a href="#" class="hover:underline">About</a>
+        <a href="/contact" class="hover:underline">About</a>
       </nav>
       <div class="bg-white p-2 rounded-full">
         <img src="https://images.rawpixel.com/image_png_800/
@@ -47,8 +47,8 @@
     <!-- Buttons -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-6">
       <div class="bg-white shadow-md rounded-lg text-center p-4 hover:shadow-lg transform transition duration-200 hover:scale-105">
-        <p class="font-semibold">Announcement</p>
-        <button class="mt-2 bg-indigo-800 text-white px-4 py-2 rounded-lg font-bold">NEWS</button>
+        <p class="font-semibold mb-4">Announcement</p>
+        <a href="/news" class="mt-2 bg-indigo-800 text-white px-4 py-2 rounded-lg font-bold ">NEWS</a>
       </div>
 
       <div class="bg-white shadow-md rounded-lg text-center p-4 hover:shadow-lg transform transition duration-200 hover:scale-105">

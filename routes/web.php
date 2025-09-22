@@ -27,18 +27,39 @@ Route::middleware(['guest'])->group(function () {
 // Protected Routes (สำหรับผู้ที่ login แล้ว)
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    
-    // Admin Routes - ใช้ชื่อไฟล์ที่มีอยู่จริง
+
+    // Admin Routes
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/dashboard', function () {
-            return view('admindashboard'); // เปลี่ยนจาก admin.dashboard เป็น admindashboard
+            return view('admindashboard'); // หน้า admin dashboard
         })->name('admin.dashboard');
     });
 
-    // Tenant Routes - ใช้ชื่อไฟล์ที่มีอยู่จริง
+    // Tenant Routes
     Route::middleware(['tenant'])->group(function () {
         Route::get('/tenant/dashboard', function () {
-            return view('tenantdashboard'); // เปลี่ยนจาก tenant.dashboard เป็น tenantdashboard
+            return view('tenantdashboard'); // หน้า tenant dashboard
         })->name('tenant.dashboard');
+    });
+
+    // Routes อื่น ๆ สำหรับผู้ใช้
+    Route::get('/mainuser', function () {
+        return view('mainuser');
+    });
+    Route::get('/contact', function () {
+        return view('contact');
+    });
+    Route::get('/news', function () {
+        return view('news');
+    });
+
+    Route::middleware([
+        'auth:sanctum',
+        config('jetstream.auth_session'),
+        'verified',
+    ])->group(function () {
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
     });
 });
