@@ -36,8 +36,8 @@
   </header>
 
   <!-- Main Content -->
-<main class="flex justify-center items-start py-10 ">
-    <div class="bg-white rounded-2xl shadow-2xl p-12 w-96">
+<main class="flex justify-center items-start py-10  ">
+    <div class="bg-white rounded-2xl shadow-2xl p-12 w-96 border border-black-100">
       <h2 class="text-xl font-bold text-center text-gray-800 mb-8">ประกาศ</h2>
 
       <div class="space-y-10">

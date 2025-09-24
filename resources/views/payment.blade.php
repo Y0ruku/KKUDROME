@@ -8,7 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class=" bg-white/30 bg-[url('https://accessnsite.com/wp-content/uploads/2020/05/page-heading-background-contact-us.jpg')] bg-cover bg-center bg-blend-overlay min-h-screen">
+<body class=" bg-white/30 bg-[url('/pic/bgcontact.jpg')] bg-cover bg-center bg-blend-overlay min-h-screen">
 
   <!-- Header Navigation -->
   <header class="bg-black/60 text-white px-6 py-6">
@@ -181,6 +181,7 @@
     const payButton = document.getElementById('payButton');
     const paymentModal = document.getElementById('paymentModal');
     const closeModal = document.getElementById('closeModal');
+    const cancelButton = document.getElementById('cancelButton');
 
     // Open Modal
     payButton.addEventListener('click', () => {
@@ -190,6 +191,11 @@
 
     // Close Modal
     closeModal.addEventListener('click', () => {
+      paymentModal.classList.add('hidden');
+      document.body.style.overflow = 'auto'; // คืนค่าการเลื่อน
+    });
+
+    cancelButton.addEventListener('click', () => {
       paymentModal.classList.add('hidden');
       document.body.style.overflow = 'auto'; // คืนค่าการเลื่อน
     });

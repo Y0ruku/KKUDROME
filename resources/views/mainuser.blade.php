@@ -68,7 +68,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 mt-8 py-6 text-center">
+  <footer class="bg-gray-900 text-gray-300 mt-8 py-6 text-center ">
     <p>Email: thegreathouse@gmail.com</p>
     <div class="flex justify-center gap-6 mt-2">
       <a href="#" class="hover:text-white">thegreathouse.com</a>
