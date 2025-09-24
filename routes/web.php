@@ -31,14 +31,14 @@ Route::middleware(['auth'])->group(function () {
     // Admin Routes
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/dashboard', function () {
-            return view('admin.dashboard');
+            return view('admindashboard');
         })->name('admin.dashboard');
     });
 
     // Tenant Routes  
     Route::middleware(['tenant'])->group(function () {
         Route::get('/tenant/dashboard', function () {
-            return view('tenant.dashboard');
+            return view('tenantdashboard');
         })->name('tenant.dashboard');
     });
 });
