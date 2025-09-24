@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-50 font-sans">
     <!-- Header Section -->
-    <header class="bg-[url('https://accessnsite.com/wp-content/uploads/2020/05/page-heading-background-contact-us.jpg')] text-white relative overflow-hidden">
+    <header class="bg-[url('/pic/bgcontact.jpg')] text-white relative overflow-hidden">
         <!-- Background Pattern -->
 
         
