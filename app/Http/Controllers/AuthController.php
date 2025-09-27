@@ -29,24 +29,26 @@ class AuthController extends Controller
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
+            'tel'      => 'required|string',
         ], [
             'username.required' => 'กรุณากรอกชื่อผู้ใช้',
             'password.required' => 'กรุณากรอกรหัสผ่าน',
+            'tel.required'      => 'กรุณากรอกเบอร์โทรศัพท์',
         ]);
 
         $username = $request->username;
         $password = $request->password;
+        $tel      = $request->tel;
 
-        // ตรวจสอบข้อมูลผู้ใช้
-        $user = DB::table('users')
-            ->where('username', $username)
-            ->where('password', $password)
-            ->first();
+        // หาผู้ใช้จาก username + tel
+        $user = User::where('username', $username)
+                    ->where('tel', $tel)
+                    ->first();
 
-        if ($user) {
-            $userModel = User::find($user->id);
-            Auth::login($userModel);
-            
+        // ถ้ามี user และ password ตรงกัน (plain text)
+        if ($user && $password === $user->password) {
+            Auth::login($user);
+
             // redirect ตาม role
             if ($user->role === 'admin') {
                 return redirect()->intended('/admin/dashboard');
@@ -55,7 +57,8 @@ class AuthController extends Controller
             }
         }
 
-        return back()->withErrors(['error' => 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'])->withInput($request->only('username'));
+        return back()->withErrors(['error' => 'ชื่อผู้ใช้ รหัสผ่าน หรือเบอร์โทรศัพท์ไม่ถูกต้อง'])
+                     ->withInput($request->only('username', 'tel'));
     }
 
     public function logout(Request $request)
