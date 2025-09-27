@@ -10,4 +10,14 @@ class Room extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
+
+    public function repairs()
+    {
+        return $this->hasMany(Repair::class);
+    }
 }

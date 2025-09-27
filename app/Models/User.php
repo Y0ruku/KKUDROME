@@ -15,6 +15,18 @@ class User extends Authenticatable
     use HasFactory;
     
     use Notifiable;
+
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
+
+    public function repairs()
+    {
+        return $this->hasMany(Repair::class);
+    }
+    
     
 
     /**
@@ -64,3 +76,5 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 }
+
+

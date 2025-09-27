@@ -10,4 +10,8 @@ class Payment extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    public function bill()
+    {
+        return $this->belongsTo(Bill::class);
+    }
 }
