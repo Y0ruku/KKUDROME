@@ -50,9 +50,9 @@
     <div class="relative">
       <img src="https://watermark.lovepik.com/photo/20211130/large/lovepik-hotel-design-picture_501259817.jpg"
         alt="house" class="w-full h-64 object-cover">
-      <div class="absolute inset-0 bg-black/60  bg-opacity-50 flex flex-col justify-center items-center text-white">
-        <h3 class="text-lg">Good Life In The Great House</h3>
-        <p class="text-2xl font-bold">Room No : 607</p>
+      <div class="absolute inset-0 bg-black/60  bg-opacity-50 flex flex-col justify-center items-center text-white ">
+        <h3 class="text-2xl ">Good Life In The Great House</h3>
+        <p class="text-4xl font-bold hover:shadow-lg transform transition duration-200 hover:scale-105">Room No : 607</p>
       </div>
     </div>
 

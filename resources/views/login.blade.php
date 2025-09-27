@@ -10,15 +10,14 @@
 
     <!-- พื้นหลังรูปภาพ + เบลอ -->
     <div class="absolute inset-0 -z-10">
-        <img src="{{ asset('pic/login.jpg') }}" 
+        <img src="{{ asset('pic/bglogin2.jpg') }}" 
              alt="Background" 
              class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 bg-white/80 "></div>
     </div>
 
     <!-- กล่องหลัก -->
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl flex overflow-hidden">
-        
+   <div class="bg-white rounded-2xl w-full max-w-4xl flex overflow-hidden" style="box-shadow: 4px 4px 10px rgba(0,0,0,0.5);">
         <!-- ฝั่งซ้าย: ฟอร์ม -->
         <div class="w-1/2 p-10 flex flex-col justify-center">
             <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8">เข้าสู่ระบบ</h2>

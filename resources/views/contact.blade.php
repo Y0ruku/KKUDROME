@@ -16,7 +16,7 @@
             <!-- Navigation -->
             <nav class="container mx-auto px-4 py-4">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-2xl font-bold ml-6 mt-2">TheGreatHouse</h1>
+                    <h1 class="text-3xl font-bold ml-6 mt-2">TheGreatHouse</h1>
                     <ul class="flex space-x-8 text-sm">
                         <li><a href="#" class="hover:text-blue-300 underline">maintenance</a></li>
                         <li><a href="profile" class="hover:text-blue-300 underline">Me</a></li>
@@ -29,7 +29,7 @@
             
             <!--Page name-->
             <div class="text-center py-20  ">
-                <h2 class="text-4xl font-bold mb-8 pt-17 ">Contact Us</h2>
+                <h2 class="text-5xl font-bold mb-8 pt-17 ">Contact Us</h2>
             </div>
         </div>
     </header>
