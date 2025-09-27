@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="th">
 
 <head>
@@ -56,7 +56,7 @@
                         <!-- Room Info -->
                         <div class="text-center">
                             <div class="text-2xl font-semibold text-gray-800 mb-1">
-                                ห้อง {{ Auth::user()->username }}
+                                ห้อง {{ Auth::user()->contracts->first()->room->roon_number ?? '' }}
                             </div>
                             <div class="text-lg text-gray-600 mb-6">
                                 {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
@@ -100,9 +100,10 @@
 
                         <!-- Action Buttons -->
                         <div class="flex justify-between items-center">
-                            <button class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition duration-200">
-                                บันทึก
-                            </button>
+                            <a href="/mainuser"><button class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition duration-200">
+                                    บันทึก
+                                </button></a>
+
                             <form method="POST" action="{{ route('logout') }}" class="inline">
                                 @csrf
                                 <button class="text-gray-600 hover:text-gray-800 transition duration-200 underline">
@@ -139,4 +140,5 @@
         </div>
     </footer>
 </body>
+
 </html>

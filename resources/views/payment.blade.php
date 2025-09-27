@@ -27,63 +27,116 @@
     </nav>
   </header>
 
+  @php
+  // ดึงสัญญาเช่าที่ active ของผู้เช่า
+  $contract = Auth::user()->contracts()->where('status', 'active')->first();
+
+  // ดึงบิลทั้งหมดของสัญญานี้ที่ยังไม่ได้จ่าย
+  $bills = $contract ? $contract->bills()->where('status', '!=', 'paid')->orderBy('due_date', 'asc')->get() : collect();
+
+  // รวมยอดทั้งหมด
+  $totalAmount = $bills->sum('amount');
+  @endphp
 
   <!-- Main Content -->
-  <main class="flex justify-center items-center py-8  mx-auto">
-    <div class="bg-white rounded-2xl shadow-xl p-12 w-full max-w-5xl mx-4 h-[600px]">
-      <!-- Back Button -->
-      <div class="flex items-center ">
-        <button class="p-2 hover:bg-gray-100 rounded-full">
-          <a href="/mainuser"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-            </svg>
-          </a>
-        </button>
-      </div>
-
-      <!-- Title -->
-      <h1 class="text-3xl font-bold text-center text-gray-800 mb-14 ">Payment Station</h1>
-
-      <!-- Payment Details -->
-      <div class="space-y-12">
-        <!-- Left Side - Months -->
-        <div class="grid grid-cols-2 gap-8">
-          <div class="space-y-4">
-            <h3 class="font-semibold text-gray-800 text-xl">ประจำเดือน</h3>
-            <div class="space-y-2 text-gray-700 text-lg">
-              <div>1 กรกฎาคม 2568</div>
-              <div>1 สิงหาคม 2568</div>
-            </div>
-          </div>
-
-          <!-- Right Side - Amounts -->
-          <div class="space-y-4 text-right">
-            <h3 class="font-semibold text-gray-800 text-xl">ยอดค้างชำระ</h3>
-            <div class="space-y-2 text-gray-700 text-lg">
-              <div>5,800  <span> บาท</span></div>
-              <div>5,754  <span> บาท</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Divider -->
-        <div class="border-t border-gray-300 my-8 "></div>
-
-        <!-- Total and Pay Button -->
-        <div class="flex justify-between items-center text-lg  ">
-          <div class="text-lg font-semibold text-gray-800">
-            รวม 11,554 บาท
-          </div>
-          <button id="payButton" class="bg-purple-500 hover:bg-purple-600 text-white px-8 py-2 rounded-lg font-medium transition duration-200">
-            ชำระเงิน
+  <main class="flex justify-center items-center py-8 mx-auto">
+    
+    @if($bills->count() > 0)
+      <!-- มีบิลค้างชำระ - แสดงหน้า Payment Station ปกติ -->
+      <div class="bg-white rounded-2xl shadow-xl p-12 w-full max-w-5xl mx-4 h-[600px]">
+        <!-- Back Button -->
+        <div class="flex items-center ">
+          <button class="p-2 hover:bg-gray-100 rounded-full">
+            <a href="/mainuser"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+            </a>
           </button>
         </div>
+
+        <!-- Title -->
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-14 ">Payment Station</h1>
+
+        <!-- Payment Details -->
+        <div class="space-y-12">
+          <!-- Left Side - Months -->
+          <div class="grid grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <h3 class="font-semibold text-gray-800 text-xl">ประจำเดือน</h3>
+              <div class="space-y-2 text-gray-700 text-lg">
+                @foreach($bills as $bill)
+                <div>{{ \Carbon\Carbon::parse($bill->due_date)->translatedFormat('d F Y') }}</div>
+                @endforeach
+              </div>
+            </div>
+
+            <!-- Right Side - Amounts -->
+            <div class="space-y-4 text-right">
+              <h3 class="font-semibold text-gray-800 text-xl">ยอดค้างชำระ</h3>
+              <div class="space-y-2 text-gray-700 text-lg">
+                @foreach($bills as $bill)
+                <div>{{ number_format($bill->amount,2) }} <span>บาท</span></div>
+                @endforeach
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="border-t border-gray-300 my-8 "></div>
+
+          <!-- Total and Pay Button -->
+          <div class="flex justify-between items-center text-lg  ">
+            <div class="text-lg font-semibold text-gray-800">
+              รวม {{ number_format($totalAmount,2) }} บาท
+            </div>
+
+            <button id="payButton" class="bg-purple-500 hover:bg-purple-600 text-white px-8 py-2 rounded-lg font-medium transition duration-200">
+              ชำระเงิน
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    @else
+      <!-- ไม่มีบิลค้างชำระ - แสดงกล่องข้อความ -->
+      <div class="bg-white rounded-2xl shadow-4xl p-12 w-full max-w-4xl mx-4 min-h-[550px] flex flex-col">
+        <!-- Back Button -->
+        <div class="flex items-center mb-6">
+          <button class="p-2 hover:bg-gray-100 rounded-full">
+            <a href="/mainuser">
+              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+            </a>
+          </button>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-16">Payment Station</h1>
+
+        <!-- Success Message Container -->
+        <div class="flex-1 flex items-center justify-center">
+          <div class="text-center">
+            <!-- Success img -->
+            <div class="mb-8">
+              <div class="w-24 h-24 mx-auto bg-green-100 rounded-full flex items-center justify-center">
+                <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <img src="/pic/done.jpg" alt="">
+                </svg>
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="text-2xl text-black-800 font-medium">
+              ท่านไม่มียอดค้างชำระ...
+            </div>
+          </div>
+        </div>
+      </div>
+    @endif
   </main>
 
-
-  <!-- Payment Modal -->
+  <!-- Payment Modal (แสดงเฉพาะเมื่อมีบิลค้างชำระ) -->
+  @if($bills->count() > 0)
   <div id="paymentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl mx-4 h-[650px] relative mt-10">
       <!-- Close Button -->
@@ -111,8 +164,13 @@
 
           <!-- Payment Details -->
           <div class="text-center">
-            <div class="text-2xl font-bold text-gray-800 mb-2">ห้อง 607</div>
-            <div class="text-lg text-gray-600 mb-1">ยอดชำระ: <span class="font-semibold text-gray-800">11,554 บาท</span></div>
+            <div class="text-2xl font-bold text-gray-800 mb-2">
+              ห้อง {{ $contract->room->roon_number ?? '-' }}
+            </div>
+            <div class="text-lg text-gray-600 mb-1">
+              ยอดชำระ: <span class="font-semibold text-gray-800">{{ number_format($totalAmount,2) }} บาท</span>
+            </div>
+
             <div class="text-sm text-gray-500">สแกน QR Code เพื่อชำระเงิน</div>
           </div>
         </div>
@@ -175,29 +233,36 @@
       </div>
     </div>
   </div>
+  @endif
 
-  <!-- JavaScript -->
+  <!-- JavaScript (แสดงเฉพาะเมื่อมีบิลค้างชำระ) -->
+  @if($bills->count() > 0)
   <script>
     const payButton = document.getElementById('payButton');
     const paymentModal = document.getElementById('paymentModal');
     const closeModal = document.getElementById('closeModal');
     const cancelButton = document.getElementById('cancelButton');
+    const fileUpload = document.getElementById('fileUpload');
+    const filePreview = document.getElementById('filePreview');
+    const fileName = document.getElementById('fileName');
+    const removeFile = document.getElementById('removeFile');
+    const submitButton = document.getElementById('submitButton');
 
     // Open Modal
     payButton.addEventListener('click', () => {
       paymentModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden'; // ป้องกันการเลื่อนหน้าหลัก
+      document.body.style.overflow = 'hidden';
     });
 
     // Close Modal
     closeModal.addEventListener('click', () => {
       paymentModal.classList.add('hidden');
-      document.body.style.overflow = 'auto'; // คืนค่าการเลื่อน
+      document.body.style.overflow = 'auto';
     });
 
     cancelButton.addEventListener('click', () => {
       paymentModal.classList.add('hidden');
-      document.body.style.overflow = 'auto'; // คืนค่าการเลื่อน
+      document.body.style.overflow = 'auto';
     });
 
     // Close modal when clicking outside
@@ -207,7 +272,25 @@
         document.body.style.overflow = 'auto';
       }
     });
+
+    // File Upload Handler
+    fileUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        fileName.textContent = file.name;
+        filePreview.classList.remove('hidden');
+        submitButton.disabled = false;
+      }
+    });
+
+    // Remove File Handler
+    removeFile.addEventListener('click', () => {
+      fileUpload.value = '';
+      filePreview.classList.add('hidden');
+      submitButton.disabled = true;
+    });
   </script>
+  @endif
 
 </body>
 
