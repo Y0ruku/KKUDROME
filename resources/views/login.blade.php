@@ -20,7 +20,7 @@
    <div class="bg-white rounded-2xl w-full max-w-4xl flex overflow-hidden" style="box-shadow: 4px 4px 10px rgba(0,0,0,0.5);">
         <!-- ฝั่งซ้าย: ฟอร์ม -->
         <div class="w-1/2 p-10 flex flex-col justify-center">
-            <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8">เข้าสู่ระบบ</h2>
+            <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8">Welcome</h2>
             
             @if ($errors->any())
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
@@ -33,36 +33,26 @@
             <form method="POST" action="/login" class="space-y-6">
                 @csrf
                 <!-- Username -->
-                <div>
+                <div class="">
                     <label for="username" class="block text-gray-700 text-base font-semibold mb-2">
-                        ชื่อผู้ใช้
+                        Username
                     </label>
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1118.364 4.56a9 9 0 01-13.243 13.243z" />
-                            </svg>
-                        </span>
                         <input type="text" 
                                id="username" 
                                name="username" 
-                               class="w-full pl-10 pr-4 py-2.5 text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                               class="w-full  pl-10 pr-4 py-2.5 text-base border  border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                                value="{{ old('username') }}" 
                                required>
                     </div>
                 </div>
 
                 <!-- Password -->
-                <div>
+                <div class= shadow-lg>
                     <label for="password" class="block text-gray-700 text-base font-semibold mb-2">
-                        รหัสผ่าน
+                        Password
                     </label>
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1118.364 4.56a9 9 0 01-13.243 13.243z" />
-                            </svg>
-                        </span>
                         <input type="password" 
                                id="password" 
                                name="password" 
@@ -73,16 +63,11 @@
 
 
                 <!-- tel -->
-                <div>
+                <div class= shadow-lg>
                     <label for="tel" class="block text-gray-700 text-base font-semibold mb-2">
-                        เบอร์โทรศัพท์
+                        Tel.
                     </label>
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1118.364 4.56a9 9 0 01-13.243 13.243z" />
-                            </svg>
-                        </span>
                         <input type="tel" 
                                id="tel" 
                                name="tel" 
@@ -94,7 +79,7 @@
                 <!-- ปุ่ม -->
                 <button type="submit" 
                         class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2.5 px-6 rounded-lg text-base shadow-md transition duration-300">
-                    เข้าสู่ระบบ
+                    Login
                 </button>
             </form>
         </div>

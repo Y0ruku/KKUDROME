@@ -49,7 +49,7 @@
             <div class="space-y-2">
                 <p class="text-lg">
                     Our Face book Page: 
-                    <a href="#" class="text-blue-600 hover:underline">www.facebook.com</a>
+                    <a href="https://www.facebook.com/computing.kku" target="_blank" class="text-blue-600 hover:underline">www.facebook.com</a>
                 </p>
                 <p class="text-lg">
                     Our Email: 
