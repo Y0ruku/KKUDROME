@@ -40,23 +40,15 @@
     <div class="bg-white rounded-2xl shadow-2xl p-12 w-96 border border-black-100">
       <h2 class="text-xl font-bold text-center text-gray-800 mb-8">ประกาศ</h2>
 
+
       <div class="space-y-10">
+
+      @foreach($news as $newss)
         <div class="flex items-center space-x-3 transition duration-200 hover:scale-110">
           <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-          <span class="text-gray-700">เตือนนิฟรีคำน้ำ</span>
+          <span class="text-gray-700">{{$newss->news}}</span>
         </div>
-
-        <div class="flex items-center space-x-3 transition duration-200 hover:scale-110">
-          <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-          <span class="text-gray-700">เตือนหน้าฟรีคำไฟ</span>
-        </div>
-
-        <div class="flex items-center space-x-3 transition duration-200 hover:scale-110">
-          <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-          <span class="text-gray-700">ข่าวล่างตึกมีข้าวฟรีค่าาา</span>
-        </div>
-
-
+        @endforeach
       </div>
     </div>
 </main>
