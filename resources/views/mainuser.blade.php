@@ -3,8 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <!-- ให้รองรับการแสดงผลทุกขนาดหน้าจอ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- ป้องกัน IE mode เก่า -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1e3a8a">
+
+  <title>The Great House</title>
   @vite('resources/css/app.css')
 </head>
 
@@ -30,17 +40,17 @@
   </header>
 
   <!-- Welcome -->
-  <section class="text-center mt-8">
-    <h2 class="text-3xl font-bold">Welcome</h2>
-    <p class="text-xl font-semibold text-gray-700">To The Great House.</p>
+  <section class="ml-32 mt-8">
+    <h2 class="text-5xl font-bold">Welcome</h2>
+    <p class="text-3xl font-semibold text-gray-700">To The Great House.</p>
   </section>
 
   <!-- Main Card -->
-  <section class="max-w-4xl mx-auto mt-8 bg-white shadow-lg rounded-3xl overflow-hidden ">
+  <section class="max-w-7xl mx-auto mt-8 bg-white shadow-lg rounded-3xl overflow-hidden ">
     <div class="relative">
       <img src="https://watermark.lovepik.com/photo/20211130/large/lovepik-hotel-design-picture_501259817.jpg"
         alt="house" class="w-full h-64 object-cover">
-      <div class="absolute inset-0 bg-black/70  bg-opacity-50 flex flex-col justify-center items-center text-white">
+      <div class="absolute inset-0 bg-black/60  bg-opacity-50 flex flex-col justify-center items-center text-white">
         <h3 class="text-lg">Good Life In The Great House</h3>
         <p class="text-2xl font-bold">Room No : 607</p>
       </div>
@@ -54,14 +64,14 @@
       </div>
 
       <div class="bg-white shadow-md rounded-lg text-center p-4 hover:shadow-lg transform transition duration-200 hover:scale-105">
-        <a href="/payment" class="">Payment</a>
+        <a href="/payment" class="font-semibold">Payment</a>
         <img src="https://cdn-icons-png.flaticon.com/512/2331/2331947.png"
           class="w-12 h-12 mx-auto mt-2" alt="payment icon">
       </div>
 
       <div class="bg-white shadow-md rounded-lg text-center p-4 hover:shadow-lg transform transition duration-200 hover:scale-105">
-        <a href="/contact"><p class="font-semibold">แจ้งซ่อมบำรุง</p></a>
-        <img src="https://cdn-icons-png.flaticon.com/512/3068/3068847.png"
+        <a href="/contact"><p class="font-semibold">Mantenance</p></a>
+        <img src="/pic/mantenance.jpg"
           class="w-12 h-12 mx-auto mt-2" alt="repair icon">
       </div>
     </div>

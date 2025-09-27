@@ -19,8 +19,8 @@
                     <h1 class="text-2xl font-bold ml-6 mt-2">TheGreatHouse</h1>
                     <ul class="flex space-x-8 text-sm">
                         <li><a href="#" class="hover:text-blue-300 underline">maintenance</a></li>
-                        <li><a href="#" class="hover:text-blue-300 underline">Me</a></li>
-                        <li><a href="/mainuser" class="hover:text-blue-300 underline">Home</a></li>
+                        <li><a href="profile" class="hover:text-blue-300 underline">Me</a></li>
+                        <li><a href="mainuser" class="hover:text-blue-300 underline">Home</a></li>
                         <li><a href="#" class="hover:text-blue-300 underline">about</a></li>
                         <li><a href="payment" class="hover:text-blue-300 underline">payment</a></li>
                     </ul>
