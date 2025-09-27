@@ -19,7 +19,7 @@ Route::get('/', function () {
         if ($user->role === 'admin') {
             return redirect('/admin/dashboard');
         } elseif ($user->role === 'tenant') {
-            return redirect('/tenant/dashboard');
+            return redirect('/mainuser');
         }
     }
     return redirect('/login');
