@@ -40,98 +40,98 @@
 
   <!-- Main Content -->
   <main class="flex justify-center items-center py-8 mx-auto">
-    
+
     @if($bills->count() > 0)
-      <!-- มีบิลค้างชำระ - แสดงหน้า Payment Station ปกติ -->
-      <div class="bg-white rounded-2xl shadow-xl p-12 w-full max-w-5xl mx-4 h-[600px]">
-        <!-- Back Button -->
-        <div class="flex items-center ">
-          <button class="p-2 hover:bg-gray-100 rounded-full">
-            <a href="/mainuser"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-              </svg>
-            </a>
+    <!-- มีบิลค้างชำระ - แสดงหน้า Payment Station ปกติ -->
+    <div class="bg-white rounded-2xl shadow-xl p-12 w-full max-w-5xl mx-4 h-[600px]">
+      <!-- Back Button -->
+      <div class="flex items-center ">
+        <button id="cancelButton" class="p-2 hover:bg-gray-100 rounded-full">
+          <a href="/mainuser"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+          </a>
+        </button>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-14 ">Payment Station</h1>
+
+      <!-- Payment Details -->
+      <div class="space-y-12">
+        <!-- Left Side - Months -->
+        <div class="grid grid-cols-2 gap-8">
+          <div class="space-y-4">
+            <h3 class="font-semibold text-gray-800 text-xl">ประจำเดือน</h3>
+            <div class="space-y-2 text-gray-700 text-lg">
+              @foreach($bills as $bill)
+              <div>{{ \Carbon\Carbon::parse($bill->due_date)->translatedFormat('d F Y') }}</div>
+              @endforeach
+            </div>
+          </div>
+
+          <!-- Right Side - Amounts -->
+          <div class="space-y-4 text-right">
+            <h3 class="font-semibold text-gray-800 text-xl">ยอดค้างชำระ</h3>
+            <div class="space-y-2 text-gray-700 text-lg">
+              @foreach($bills as $bill)
+              <div>{{ number_format($bill->amount,2) }} <span>บาท</span></div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-300 my-8 "></div>
+
+        <!-- Total and Pay Button -->
+        <div class="flex justify-between items-center text-lg  ">
+          <div class="text-lg font-semibold text-gray-800">
+            รวม {{ number_format($totalAmount,2) }} บาท
+          </div>
+
+          <button id="payButton" class="bg-purple-500 hover:bg-purple-600 text-white px-8 py-2 rounded-lg font-medium transition duration-200">
+            ชำระเงิน
           </button>
         </div>
-
-        <!-- Title -->
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-14 ">Payment Station</h1>
-
-        <!-- Payment Details -->
-        <div class="space-y-12">
-          <!-- Left Side - Months -->
-          <div class="grid grid-cols-2 gap-8">
-            <div class="space-y-4">
-              <h3 class="font-semibold text-gray-800 text-xl">ประจำเดือน</h3>
-              <div class="space-y-2 text-gray-700 text-lg">
-                @foreach($bills as $bill)
-                <div>{{ \Carbon\Carbon::parse($bill->due_date)->translatedFormat('d F Y') }}</div>
-                @endforeach
-              </div>
-            </div>
-
-            <!-- Right Side - Amounts -->
-            <div class="space-y-4 text-right">
-              <h3 class="font-semibold text-gray-800 text-xl">ยอดค้างชำระ</h3>
-              <div class="space-y-2 text-gray-700 text-lg">
-                @foreach($bills as $bill)
-                <div>{{ number_format($bill->amount,2) }} <span>บาท</span></div>
-                @endforeach
-              </div>
-            </div>
-          </div>
-
-          <!-- Divider -->
-          <div class="border-t border-gray-300 my-8 "></div>
-
-          <!-- Total and Pay Button -->
-          <div class="flex justify-between items-center text-lg  ">
-            <div class="text-lg font-semibold text-gray-800">
-              รวม {{ number_format($totalAmount,2) }} บาท
-            </div>
-
-            <button id="payButton" class="bg-purple-500 hover:bg-purple-600 text-white px-8 py-2 rounded-lg font-medium transition duration-200">
-              ชำระเงิน
-            </button>
-          </div>
-        </div>
       </div>
+    </div>
     @else
-      <!-- ไม่มีบิลค้างชำระ - แสดงกล่องข้อความ -->
-      <div class="bg-white rounded-2xl shadow-4xl p-12 w-full max-w-4xl mx-4 min-h-[550px] flex flex-col">
-        <!-- Back Button -->
-        <div class="flex items-center mb-6">
-          <button class="p-2 hover:bg-gray-100 rounded-full">
-            <a href="/mainuser">
-              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    <!-- ไม่มีบิลค้างชำระ - แสดงกล่องข้อความ -->
+    <div class="bg-white rounded-2xl shadow-4xl p-12 w-full max-w-4xl mx-4 min-h-[550px] flex flex-col">
+      <!-- Back Button -->
+      <div class="flex items-center mb-6">
+        <button class="p-2 hover:bg-gray-100 rounded-full">
+          <a href="/mainuser">
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+          </a>
+        </button>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-16">Payment Station</h1>
+
+      <!-- Success Message Container -->
+      <div class="flex-1 flex items-center justify-center">
+        <div class="text-center">
+          <!-- Success img -->
+          <div class="mb-8">
+            <div class="w-24 h-24 mx-auto bg-green-100 rounded-full flex items-center justify-center">
+              <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <img src="/pic/done.jpg" alt="">
               </svg>
-            </a>
-          </button>
-        </div>
-
-        <!-- Title -->
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-16">Payment Station</h1>
-
-        <!-- Success Message Container -->
-        <div class="flex-1 flex items-center justify-center">
-          <div class="text-center">
-            <!-- Success img -->
-            <div class="mb-8">
-              <div class="w-24 h-24 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-                <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <img src="/pic/done.jpg" alt="">
-                </svg>
-              </div>
             </div>
+          </div>
 
-            <!-- Message -->
-            <div class="text-2xl text-black-800 font-medium">
-              ท่านไม่มียอดค้างชำระ...
-            </div>
+          <!-- Message -->
+          <div class="text-2xl text-black-800 font-medium">
+            ท่านไม่มียอดค้างชำระ...
           </div>
         </div>
       </div>
+    </div>
     @endif
   </main>
 
@@ -194,13 +194,42 @@
                 <p class="text-lg text-gray-600 mb-2">วางไฟล์ที่นี่ หรือคลิกเพื่อเลือกไฟล์</p>
                 <p class="text-sm text-gray-500">รองรับไฟล์ JPG, PNG, PDF (ขนาดไม่เกิน 10MB)</p>
               </div>
-              <div class="flex items-center justify-center">
-                <input type="file" class="hidden" id="fileUpload" accept="image/*,.pdf">
-                <label for="fileUpload" class="bg-blue-500 text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-blue-600 transition duration-200 font-medium">
+
+              <form action="{{ route('payments.upload') }}" method="POST" enctype="multipart/form-data" class="flex flex-col items-center">
+                @csrf
+                <input type="hidden" name="bill_id" value="{{ $bills->first()->id }}"> <!-- สมมุติเลือกบิลแรก -->
+
+                <input type="file" name="slip_image" id="fileUpload" class="hidden" accept="image/*,.pdf">
+                <label for="fileUpload" class="bg-blue-500 text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-blue-600 transition duration-200 font-medium mb-4">
                   เลือกไฟล์
                 </label>
-              </div>
+
+                <!-- File Preview Area -->
+                <div id="filePreview" class="hidden mb-4 w-full max-w-xs mx-auto">
+                  <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+                    <div class="flex items-center">
+                      <svg class="w-8 h-8 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span id="fileName" class="text-gray-700 font-medium"></span>
+                    </div>
+                    <button type="button" id="removeFile" class="text-red-500 hover:text-red-700">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitButton" class="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition duration-200 font-medium disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>
+                  ส่งข้อมูล
+                </button>
+                  <!-- <button id="cancelButton" class="">
+                  </button> -->
+              </form>
             </div>
+
 
             <!-- File Preview Area -->
             <div id="filePreview" class="hidden mb-6">
@@ -221,14 +250,7 @@
           </div>
 
           <!-- Submit Button -->
-          <div class="flex justify-center space-x-4">
-            <button id="cancelButton" class="bg-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-400 transition duration-200 font-medium">
-              ยกเลิก
-            </button>
-            <button id="submitButton" class="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition duration-200 font-medium disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>
-              ส่งข้อมูล
-            </button>
-          </div>
+
         </div>
       </div>
     </div>
@@ -291,6 +313,23 @@
     });
   </script>
   @endif
+
+  @if(session('success'))
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    Swal.fire({
+      title: 'สำเร็จ!',
+      text: "{{ session('success') }}",
+      imageUrl: '/pic/done.jpg',
+      imageWidth: 80,
+      imageHeight: 80,
+      imageAlt: 'สำเร็จ',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'ตกลง'
+    });
+  </script>
+  @endif
+
 
 </body>
 

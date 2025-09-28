@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RepairController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/mainuser' ,function(){ return view('mainuser');});
 Route::get('/contact' ,function(){ return view('contact');});
@@ -12,6 +14,8 @@ Route::get('/profile' ,function(){ return view('profile');});
 Route::get('/payment' ,function(){ return view('payment');});
 Route::get('/news', [NewsController::class, "news"]);
 Route::post('/contact/send', [RepairController::class, 'store'])->name('contact.send');
+Route::post('/payments/upload', [PaymentController::class, 'upload'])->name('payments.upload');
+
 
 // Redirect หน้าแรกไป login
 Route::get('/', function () {

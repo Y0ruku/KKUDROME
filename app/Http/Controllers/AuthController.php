@@ -69,4 +69,6 @@ class AuthController extends Controller
         
         return redirect('/login')->with('success', 'ออกจากระบบเรียบร้อยแล้ว');
     }
+
+
 }

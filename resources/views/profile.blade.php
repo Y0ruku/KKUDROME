@@ -33,14 +33,14 @@
     <!-- Main Content -->
     <div class="flex-1 flex">
         <!-- Left Side - Background Image -->
-        <div class="w-1/2 bg-cover bg-center relative bg-[url('/pic/login.jpg')] bg-black/30 bg-blend-overlay"></div>
+        <div class="w-1/2 relative bg-[url('/pic/login.jpg')] bg-cover bg-center bg-black/30  bg-blend-overlay"></div>
 
         <!-- Right Side - White Background -->
         <div class="w-1/2 bg-white relative"></div>
 
         <!-- Center Profile Card -->
         <div class="absolute inset-0 flex items-center justify-center z-10 ">
-            <div class="bg-white bg-opacity-95 rounded-3xl shadow-lg overflow-hidden max-w-4xl w-full mx-4 h-[500px] border-2 border-black">
+            <div class="bg-white bg-opacity-95 rounded-3xl shadow-lg overflow-hidden max-w-4xl w-full mx-4 h-[500px] border border-black">
                 <div class="flex h-full">
                     <!-- Left Side - Profile Section -->
                     <div class="bg-gray-200 p-8 flex flex-col items-center justify-center w-1/2 h-full">
@@ -70,9 +70,9 @@
                     <!-- Right Side - Details Section -->
                     <div class="p-8 w-1/2 flex flex-col justify-between h-full">
                         <div class="flex-1">
-                            <h2 class="text-4xl font-bold text-gray-800 mb-2">Hello</h2>
-                            <h3 class="text-2xl text-gray-700 mb-6">
-                                Room {{ Auth::user()->username }}
+                            <h2 class="text-6xl font-bold text-gray-800 mb-2">Hello</h2>
+                            <h3 class="text-4xl text-gray-700 mb-6">
+                                Room {{ Auth::user()->contracts->first()->room->roon_number ?? '' }}
                             </h3>
 
                             <div class="space-y-4 mb-8">
@@ -118,8 +118,8 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white p-4">
-        <div class="flex justify-between items-center">
+    <footer class="bg-[url('/pic/footer1.jpg')] bg-cover bg-[center_40%] bg-black/70 bg-blend-overlay text-white p-4">
+        <div class="flex justify-between items-center ">
             <div class="text-sm">
                 Email: thegreathouse@gmail.com
             </div>

@@ -21,6 +21,6 @@ class RepairController extends Controller
             'status'      => 'pending',
         ]);
 
-        return back()->with('success', 'ส่งข้อความสำเร็จแล้ว!');
+        return back()->with('success', 'ส่งข้อความสำเร็จ!');
     }
 }
