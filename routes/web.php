@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\RepairController;
 
 Route::get('/mainuser' ,function(){ return view('mainuser');});
 Route::get('/contact' ,function(){ return view('contact');});
 Route::get('/profile' ,function(){ return view('profile');});
 Route::get('/payment' ,function(){ return view('payment');});
 Route::get('/news', [NewsController::class, "news"]);
+Route::post('/contact/send', [RepairController::class, 'store'])->name('contact.send');
 
 // Redirect หน้าแรกไป login
 Route::get('/', function () {

@@ -13,8 +13,11 @@ class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
-    
     use Notifiable;
+    protected $primaryKey = 'id';   // ให้แน่ใจว่าใช้ id
+    public $incrementing = true;    // id เป็น auto increment
+    protected $keyType = 'int';     // ชนิดข้อมูลเป็น int
+
 
 
     public function contracts()
@@ -26,8 +29,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Repair::class);
     }
-    
-    
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -36,15 +39,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
-        'password', 
+        'password',
         'role',
     ];
 
     // ใช้ username แทน email
-    public function getAuthIdentifierName()
-    {
-        return 'username';
-    }
+    // public function getAuthIdentifierName()
+    // {
+    //     return 'username';
+    // }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -76,5 +79,3 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 }
-
-
