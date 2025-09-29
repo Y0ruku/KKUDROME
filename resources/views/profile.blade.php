@@ -41,9 +41,13 @@
         <!-- Center Profile Card -->
         <div class="absolute inset-0 flex items-center justify-center z-10 ">
             <div class="bg-white bg-opacity-95 rounded-3xl shadow-lg overflow-hidden max-w-4xl w-full mx-4 h-[500px] border border-black">
+
                 <div class="flex h-full">
                     <!-- Left Side - Profile Section -->
-                    <div class="bg-gray-200 p-8 flex flex-col items-center justify-center w-1/2 h-full">
+                    <div class="bg-gray-200 p-8 flex flex-col items-center justify-center w-1/2 h-full relative">
+                        <a href="/mainuser" class="absolute top-4 left-4 hover:opacity-70 transition duration-200">
+                            <img src="/pic/closeicon.jpg" alt="Close" class="w-6 h-6">
+                        </a>
                         <!-- Profile Avatar -->
                         <div class="w-40 h-40 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
                             <div class="w-32 h-32 bg-black rounded-full flex items-center justify-center">
@@ -69,48 +73,75 @@
 
                     <!-- Right Side - Details Section -->
                     <div class="p-8 w-1/2 flex flex-col justify-between h-full">
-                        <div class="flex-1">
-                            <h2 class="text-6xl font-bold text-gray-800 mb-2">Hello</h2>
-                            <h3 class="text-4xl text-gray-700 mb-6">
-                                Room {{ Auth::user()->contracts->first()->room->roon_number ?? '' }}
-                            </h3>
+                        <form id="profileForm" method="POST" action="{{ route('profile.update') }}">
+                            @csrf
+                            <div class="flex-1">
+                                <h2 class="text-6xl font-bold text-gray-800 mb-2">Hello</h2>
+                                <h3 class="text-4xl text-gray-700 mb-6">
+                                    Room {{ Auth::user()->contracts->first()->room->roon_number ?? '' }}
+                                </h3>
 
-                            <div class="space-y-4 mb-8">
-                                <div class="flex items-center text-lg text-gray-600">
-                                    <span class="font-medium">ชื่อ :</span>
-                                    <span class="ml-2">{{ Auth::user()->firstname }}</span>
-                                </div>
+                                <div class="space-y-4 mb-8">
+                                    <div class="flex items-center text-lg text-gray-600">
+                                        <span class="font-medium">ชื่อ :</span>
+                                        <span class="ml-2">{{ Auth::user()->firstname }}</span>
+                                    </div>
 
-                                <div class="flex items-center text-lg text-gray-600">
-                                    <span class="font-medium">สกุล :</span>
-                                    <span class="ml-2">{{ Auth::user()->lastname }}</span>
-                                </div>
+                                    <div class="flex items-center text-lg text-gray-600">
+                                        <span class="font-medium">สกุล :</span>
+                                        <span class="ml-2">{{ Auth::user()->lastname }}</span>
+                                    </div>
 
-                                <div class="flex items-center text-lg text-gray-600">
-                                    <span class="font-medium">Email :</span>
-                                    <span class="ml-2 text-blue-600">{{ Auth::user()->email }}</span>
-                                </div>
+                                    <!-- Email Field -->
+                                    <div class="flex items-center text-lg text-gray-600">
+                                        <span class="font-medium">Email :</span>
+                                        <span id="email_display" class="ml-2 text-blue-600">{{ Auth::user()->email }}</span>
+                                        <input type="email" id="email_input" name="email" value="{{ Auth::user()->email }}"
+                                            class="ml-2 text-blue-600 border border-gray-300 rounded px-2 py-1"
+                                            style="display: none;">
+                                        <button type="button" id="email_edit" onclick="toggleEdit('email')"
+                                            class="ml-2 text-gray-500 hover:text-gray-700">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
 
-                                <div class="flex items-center text-lg text-gray-600">
-                                    <span class="font-medium">Phone Number :</span>
-                                    <span class="ml-2">{{ Auth::user()->tel }}</span>
+                                    <!-- Phone Number Field -->
+                                    <div class="flex items-center text-lg text-gray-600">
+                                        <span class="font-medium">Phone Number :</span>
+                                        <span id="tel_display" class="ml-2">{{ Auth::user()->tel }}</span>
+                                        <input type="text" id="tel_input" name="tel" value="{{ Auth::user()->tel }}"
+                                            class="ml-2 border border-gray-300 rounded px-2 py-1"
+                                            style="display: none;">
+                                        <button type="button" id="tel_edit" onclick="toggleEdit('tel')"
+                                            class="ml-2 text-gray-500 hover:text-gray-700">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Action Buttons -->
-                        <div class="flex justify-between items-center">
-                            <a href="/mainuser"><button class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition duration-200">
+                            <!-- Action Buttons -->
+                            <div class="flex justify-between items-center">
+                                <button type="button" id="saveBtn" class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition duration-200">
                                     บันทึก
-                                </button></a>
+                                </button>
+                            </div>
+                        </form>
 
-                            <form method="POST" action="{{ route('logout') }}" class="inline">
+                        <!-- ย้าย logout form ออกมาข้างนอก -->
+                        <div class="px-8 pb-8">
+                            <form method="POST" action="{{ route('logout') }}" class="inline float-right">
                                 @csrf
-                                <button class="text-gray-600 hover:text-gray-800 transition duration-200 underline">
+                                <button type="submit" class="text-gray-600 hover:text-gray-800 transition duration-200 underline">
                                     Log out
                                 </button>
                             </form>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -139,6 +170,27 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function toggleEdit(field) {
+            const displayElement = document.getElementById(field + '_display');
+            const inputElement = document.getElementById(field + '_input');
+            const editIcon = document.getElementById(field + '_edit');
+
+            if (inputElement.style.display === 'none' || inputElement.style.display === '') {
+                // แสดง input, ซ่อน display
+                displayElement.style.display = 'none';
+                inputElement.style.display = 'block';
+                inputElement.focus();
+                editIcon.innerHTML = '✓'; // เปลี่ยนเป็นเครื่องหมายถูก
+            }
+        }
+
+        // ฟังก์ชันบันทึกข้อมูล
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            document.getElementById('profileForm').submit();
+        });
+    </script>
 </body>
 
 </html>

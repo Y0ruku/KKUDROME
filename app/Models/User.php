@@ -19,7 +19,7 @@ class User extends Authenticatable
     protected $keyType = 'int';     // ชนิดข้อมูลเป็น int
 
 
-    
+
 
     public function contracts()
     {
@@ -42,6 +42,8 @@ class User extends Authenticatable
         'username',
         'password',
         'role',
+        'email',    // เพิ่ม
+        'tel',      //เพิ่ม
     ];
 
     // ใช้ username แทน email

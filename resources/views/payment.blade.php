@@ -19,7 +19,7 @@
       <!-- Menu อยู่ตรงกลาง -->
       <div class="absolute left-1/2 transform -translate-x-1/2 flex space-x-6 text-sm">
         <a href="/contact" class="hover:text-gray-300 underline">maintenance</a>
-        <a href="#" class="hover:text-gray-300 underline">Me</a>
+        <a href="/profile" class="hover:text-gray-300 underline">Me</a>
         <a href="/mainuser" class="hover:text-gray-300 underline">Home</a>
         <a href="/contact" class="hover:text-gray-300 underline">about</a>
         <a href="#" class="hover:text-gray-300 underline">payment</a>

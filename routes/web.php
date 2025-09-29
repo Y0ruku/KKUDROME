@@ -7,6 +7,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RepairController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 Route::get('/mainuser' ,function(){ return view('mainuser');});
 Route::get('/contact' ,function(){ return view('contact');});
@@ -15,6 +16,7 @@ Route::get('/payment' ,function(){ return view('payment');});
 Route::get('/news', [NewsController::class, "news"]);
 Route::post('/contact/send', [RepairController::class, 'store'])->name('contact.send');
 Route::post('/payments/upload', [PaymentController::class, 'upload'])->name('payments.upload');
+
 
 
 // Redirect หน้าแรกไป login
@@ -40,6 +42,7 @@ Route::middleware(['guest'])->group(function () {
 // Protected Routes
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');
     
     // Admin Routes
     Route::middleware(['admin'])->group(function () {

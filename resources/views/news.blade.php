@@ -20,8 +20,8 @@
 
       <!-- Menu ตรงกลาง -->
       <div class="absolute left-1/2 transform -translate-x-1/2 flex space-x-6 text-white ">
-        <a href="#" class="hover:text-gray-300">maintenance</a>
-        <a href="#" class="hover:text-gray-300">Me</a>
+        <a href="/contact" class="hover:text-gray-300">maintenance</a>
+        <a href="/profile" class="hover:text-gray-300">Me</a>
         <a href="/mainuser" class="hover:text-gray-300">Home</a>
         <a href="/contact" class="hover:text-gray-300">about</a>
         <a href="/payment" class="hover:text-gray-300">payment</a>
