@@ -11,6 +11,13 @@ class Contract extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [ //ใช่กับหน้า accountuser
+    'user_id',
+    'room_id',
+    'start_date',
+    'end_date',
+    'status'
+];
 
      public function user()
     {

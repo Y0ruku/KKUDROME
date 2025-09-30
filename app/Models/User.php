@@ -44,6 +44,8 @@ class User extends Authenticatable
         'role',
         'email',    // เพิ่ม
         'tel',      //เพิ่ม
+        'firstname',//เพิ่มใช่กับหน้า accountuser
+        'lastname',//เพิ่มใช่กับหน้า accountuser
     ];
 
     // ใช้ username แทน email

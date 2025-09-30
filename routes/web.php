@@ -8,6 +8,7 @@ use App\Http\Controllers\RepairController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TenantController;
 
 Route::get('/mainuser' ,function(){ return view('mainuser');});
 Route::get('/contact' ,function(){ return view('contact');});
@@ -16,6 +17,9 @@ Route::get('/payment' ,function(){ return view('payment');});
 Route::get('/news', [NewsController::class, "news"]);
 Route::post('/contact/send', [RepairController::class, 'store'])->name('contact.send');
 Route::post('/payments/upload', [PaymentController::class, 'upload'])->name('payments.upload');
+
+
+
 
 
 
@@ -54,6 +58,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/profile', function () {
             return view('Adminprofile');
         })->name('admin.profile');
+    });
+    Route::middleware(['admin'])->group(function(){
+        Route::get('/admin/accountuser', [TenantController::class, 'index'])->name('tenant.index');
+Route::delete('/tenant/delete/{id}', [TenantController::class, 'delete'])->name('tenant.delete');
+    Route::get('/tenant/edit/{id}', [TenantController::class, 'edit'])->name('tenant.edit');
+    Route::get('/tenant/fetch/{id}', [TenantController::class, 'fetch'])->name('tenant.fetch');
+    Route::put('/tenant/update/{id}', [TenantController::class, 'update'])->name('tenant.update');
+    Route::post('/tenant/store', [TenantController::class, 'store'])->name('tenant.store');
+
+    
     });
 
     // Tenant Routes  
