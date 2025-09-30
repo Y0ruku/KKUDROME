@@ -50,6 +50,11 @@ Route::middleware(['auth'])->group(function () {
             return view('admindashboard');
         })->name('admin.dashboard');
     });
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/admin/profile', function () {
+            return view('Adminprofile');
+        })->name('admin.profile');
+    });
 
     // Tenant Routes  
     Route::middleware(['tenant'])->group(function () {

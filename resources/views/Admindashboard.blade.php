@@ -1,46 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Admin Dashboard</title>
+  <!-- ให้รองรับการแสดงผลทุกขนาดหน้าจอ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- ป้องกัน IE mode เก่า -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1e3a8a">
+
+  <title>The Great House</title>
   @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-50 min-h-screen">
-  <!-- Navigation Bar -->
-  <nav class="bg-indigo-600 text-white p-4">
-    <div class="flex justify-between items-center">
-      <h2 class="text-xl font-bold">Admin Panel</h2>
-      <div class="flex items-center space-x-4">
-        <span>สวัสดี: <b>{{ auth()->user()->username }}</b></span>
-        <form method="POST" action="{{ route('logout') }}" class="inline">
-          @csrf
-          <button type="submit" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded">
-            ออกจากระบบ
-          </button>
-        </form>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Main Content -->
-  <div class="flex items-center justify-center min-h-screen">
-    <div class="p-10 bg-white shadow-xl rounded-xl text-center max-w-md">
-      <h1 class="text-3xl font-bold text-indigo-600 mb-4">Admin Dashboard</h1>
-      <p class="text-gray-700 mb-6">สวัสดีคุณคือ <b>Admin</b> 🎉</p>
-      
-      <!-- Admin Menu -->
-      <div class="grid grid-cols-1 gap-4 mt-8">
-        <button class="bg-indigo-500 hover:bg-indigo-600 text-white py-3 px-6 rounded-lg">
-          ผู้เช่าหอพัก
-        </button>
-        <button class="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg">
-          จัดการห้องพัก
-        </button>
-        <button class="bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-6 rounded-lg">
-          รายงาน
-        </button>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-indigo-900 text-white flex justify-between items-center px-8 py-6 shadow-lg rounded-b-2xl">
+    <h1 class="text-lg font-semibold">The Great House</h1>
+    <div class="flex items-center gap-6">
+      <nav class="space-x-4 hidden sm:block ">
+        <a href="/admin/profile" class="hover:underline">Me</a>
+        <a href="#" class="hover:underline">Home</a>
+        
+      </nav>
+      <a href="/admin/profile">
+      <div class="bg-white p-2 rounded-full">
+        <img src="https://images.rawpixel.com/image_png_800/
+        czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvb
+        HIvdjkzNy1hZXctMTM5LnBuZw.png" alt="User" class="w-6 h-6 rounded-full object-cover">
+      </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- Welcome -->
+  <section class="ml-32 mt-8">
+    <h2 class="text-5xl font-bold">Welcome</h2>
+    <p class="text-3xl font-semibold text-gray-700">To The Great House.</p>
+  </section>
+
+  <!-- Main Card -->
+  <section class="max-w-7xl mx-auto mt-8 bg-white shadow-lg rounded-3xl overflow-hidden ">
+    <div class="relative">
+      <img src="https://watermark.lovepik.com/photo/20211130/large/lovepik-hotel-design-picture_501259817.jpg"
+        alt="house" class="w-full h-64 object-cover">
+      <div class="absolute inset-0 bg-black/60  bg-opacity-50 flex flex-col justify-center items-center text-white ">
+        <h3 class="text-2xl ">Good Life In The Great House</h3>
+        <p class="text-4xl font-bold hover:shadow-lg transform transition duration-200 hover:scale-105">Admin</p>
       </div>
     </div>
+
+    <div class="max-w-7xl mx-auto mt-8 px-6">
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+    <!-- Card 1: Account user -->
+    <a href="#" aria-label="Account user" 
+       class="block bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transform transition duration-200 hover:-translate-y-1 p-8 flex items-center justify-center text-center group">
+      <span class="text-xl sm:text-2xl font-semibold text-gray-800 group-hover:text-indigo-700">
+        Account user
+      </span>
+    </a>
+
+    <!-- Card 2: Edit announcement -->
+    <a href="#" aria-label="Edit announcement"
+       class="block bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transform transition duration-200 hover:-translate-y-1 p-8 flex items-center justify-center text-center group">
+      <span class="text-xl sm:text-2xl font-semibold text-gray-800 group-hover:text-indigo-700">
+        Edit announcement
+      </span>
+    </a>
+
+    <!-- Card 3: Payment status -->
+    <a href="#" aria-label="Payment status"
+       class="block bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transform transition duration-200 hover:-translate-y-1 p-8 flex items-center justify-center text-center group">
+      <span class="text-xl sm:text-2xl font-semibold text-gray-800 group-hover:text-indigo-700">
+        Payment status
+      </span> 
+    </a>
+
   </div>
+</div>
+</section>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 mt-8 py-6 text-center ">
+    <p>Email: thegreathouse@gmail.com</p>
+    <div class="flex justify-center gap-6 mt-2">
+      <a href="#" class="hover:text-white">thegreathouse.com</a>
+      <a href="#" class="hover:text-white">facebook.com/thegreathouse</a>
+    </div>
+    <p class="text-sm mt-2">www.thegreathousethegoodlifestyle.com</p>
+  </footer>
+
 </body>
+
 </html>
