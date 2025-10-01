@@ -60,14 +60,22 @@ Route::middleware(['auth'])->group(function () {
         })->name('admin.profile');
     });
     Route::middleware(['admin'])->group(function(){
+        //หน้าแก้ไขข้อมูลลูกค้า
         Route::get('/admin/accountuser', [TenantController::class, 'index'])->name('tenant.index');
 Route::delete('/tenant/delete/{id}', [TenantController::class, 'delete'])->name('tenant.delete');
     Route::get('/tenant/edit/{id}', [TenantController::class, 'edit'])->name('tenant.edit');
     Route::get('/tenant/fetch/{id}', [TenantController::class, 'fetch'])->name('tenant.fetch');
     Route::put('/tenant/update/{id}', [TenantController::class, 'update'])->name('tenant.update');
     Route::post('/tenant/store', [TenantController::class, 'store'])->name('tenant.store');
+    });
 
-    
+Route::middleware(['admin'])->group(function(){
+// หน้าแสดงรายการประกาศ (admin ใช้จัดการ)
+Route::get('/admin/announcements', [NewsController::class, 'index'])->name('announcements.index');
+Route::post('/announcements/store', [NewsController::class, 'store'])->name('announcements.store');
+Route::put('/announcements/update/{id}', [NewsController::class, 'update'])->name('announcements.update');
+Route::delete('/announcements/delete/{id}', [NewsController::class, 'destroy'])->name('announcements.destroy');
+
     });
 
     // Tenant Routes  

@@ -27,9 +27,9 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="/admin/dashboard">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" href="#">Account user</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/admin/accountuser">Account user</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Payment Stations</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Edit announcement</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/announcements">Edit announcement</a></li>
       </ul>
     </div>
   </div>

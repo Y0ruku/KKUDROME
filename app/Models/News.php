@@ -10,4 +10,10 @@ class News extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'news',
+        'created_at',
+        'update_at',
+        'status',
+    ];
 }

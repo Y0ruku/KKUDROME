@@ -68,7 +68,7 @@
     </a>
 
     <!-- Card 2: Edit announcement -->
-    <a href="#" aria-label="Edit announcement"
+    <a href="/admin/announcements" aria-label="Edit announcement"
        class="block bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transform transition duration-200 hover:-translate-y-1 p-8 flex items-center justify-center text-center group">
       <span class="text-xl sm:text-2xl font-semibold text-gray-800 group-hover:text-indigo-700">
         Edit announcement
