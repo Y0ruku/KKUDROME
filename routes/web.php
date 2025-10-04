@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');
     
+    
     // Admin Routes
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/dashboard', function () {
@@ -59,6 +60,15 @@ Route::middleware(['auth'])->group(function () {
             return view('Adminprofile');
         })->name('admin.profile');
     });
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/admin/paymentstatus',[PaymentController::class, 'index'])->name('admin.paymentstatus');
+    });
+     Route::middleware(['admin'])->group(function () {
+        // routes/web.php
+Route::put('/admin/paymentstatus/{payment}', [PaymentController::class, 'updateStatus'])->name('payments.updateStatus');
+
+    });
+    
     Route::middleware(['admin'])->group(function(){
         //หน้าแก้ไขข้อมูลลูกค้า
         Route::get('/admin/accountuser', [TenantController::class, 'index'])->name('tenant.index');

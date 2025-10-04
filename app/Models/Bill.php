@@ -9,6 +9,7 @@ class Bill extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    
 
      public function contract()
     {
@@ -19,4 +20,9 @@ class Bill extends Model
     {
         return $this->hasOne(Payment::class);
     }
+       public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+
 }

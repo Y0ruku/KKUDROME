@@ -26,7 +26,7 @@
     <div class="flex items-center gap-6">
       <nav class="space-x-4 hidden sm:block ">
         <a href="/admin/profile" class="hover:underline">Me</a>
-        <a href="#" class="hover:underline">Home</a>
+        <a href="/admin/announcements" class="hover:underline">Home</a>
         
       </nav>
       <a href="/admin/profile">
@@ -76,7 +76,7 @@
     </a>
 
     <!-- Card 3: Payment status -->
-    <a href="#" aria-label="Payment status"
+    <a href="/admin/paymentstatus" aria-label="Payment status"
        class="block bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transform transition duration-200 hover:-translate-y-1 p-8 flex items-center justify-center text-center group">
       <span class="text-xl sm:text-2xl font-semibold text-gray-800 group-hover:text-indigo-700">
         Payment status

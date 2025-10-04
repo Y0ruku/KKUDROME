@@ -34,5 +34,26 @@ class PaymentController extends Controller
         // แจ้งเตือนสำเร็จ
         return back()->with('success', 'อัปโหลดสลิปสำเร็จแล้ว! ระบบจะตรวจสอบโดยเจ้าหน้าที่เร็วๆ นี้');
     }
+    //payment status
+    public function index()
+{
+    $payments = Payment::with(['bill.room'])->get();
+    return view('paymentstatus', compact('payments'));
+}
+
+public function updateStatus(Request $request, Payment $payment)
+{
+    $request->validate([
+        'status' => 'required|in:approved,rejected'
+    ]);
+
+    $payment->status = $request->status;
+    $payment->save();
+
+    return redirect()->back()->with('success', 'Status updated successfully!');
+}
+
+   
+
 }
 

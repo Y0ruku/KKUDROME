@@ -16,8 +16,14 @@ class Room extends Model
         return $this->hasMany(Contract::class);
     }
 
+    public function bills()
+{
+    return $this->hasMany(Bill::class);
+}
+
     public function repairs()
     {
         return $this->hasMany(Repair::class);
     }
+   
 }
