@@ -319,7 +319,7 @@
   <script>
     Swal.fire({
       title: 'สำเร็จ!',
-      text: "{{ session('success') }}",
+      text: "อัปโหลดสลิปสำเร็จแล้ว! ระบบจะตรวจสอบโดยเจ้าหน้าที่เร็วๆนี้",
       imageUrl: '/pic/done.jpg',
       imageWidth: 80,
       imageHeight: 80,
