@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Messages</title>
+  <title>Messages</title>
   <style>
     body {
       font-family: "Poppins", sans-serif;
@@ -114,7 +114,6 @@
         <tr>
           <th>Sender</th>
           <th>Email</th>
-          <th>Received At</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -123,7 +122,6 @@
         <tr>
           <td>{{ $repair->user->username ?? 'N/A' }}</td>
           <td>{{ $repair->user->email ?? '-' }}</td>
-          <td>{{ $repair->created_at->format('Y-m-d H:i') }}</td>
           <td>
             <button class="btn-view" onclick="viewMessage('{{ addslashes($repair->description) }}')">
               View

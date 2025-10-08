@@ -25,7 +25,7 @@
     <h1 class="text-lg font-semibold">The Great House</h1>
     <div class="flex items-center gap-6">
       <nav class="space-x-4 hidden sm:block ">
-         <a href="/admin/Massage" class="hover:underline">Massage</a>
+         <a href="/admin/Massage" class="hover:underline">Message</a>
         <a href="/admin/profile" class="hover:underline">Me</a>
         <a href="/admin/announcements" class="hover:underline">Home</a>
         
