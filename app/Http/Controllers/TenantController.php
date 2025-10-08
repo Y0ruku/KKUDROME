@@ -71,31 +71,47 @@ public function delete($contractId)
     public function store(Request $request)
 {
     DB::transaction(function () use ($request) {
-       $user = User::create([
-    'firstname' => $request->firstname,
-    'lastname' => $request->lastname, // ✅ อย่าลืมบรรทัดนี้
-    'username' => $request->username,
-    'email' => $request->email,
-    'tel' => $request->tel,
-    'password' => ($request->password), // ✅ เข้ารหัสเฉพาะ password เท่านั้น
-    'role' => 'tenant',
-]);
 
-        $room = Room::where('status', 'available')->where('id', $request->room_id)->firstOrFail();
+        // ✅ สร้าง User
+        $user = User::create([
+            'firstname' => $request->firstname,
+            'lastname'  => $request->lastname,
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'tel'       => $request->tel,
+            'password'  => ($request->password),
+            'role'      => 'tenant',
+        ]);
+
+        // ✅ อัปเดตสถานะห้อง
+        $room = Room::where('status', 'available')
+            ->where('id', $request->room_id)
+            ->firstOrFail();
+
         $room->status = 'occupied';
         $room->save();
 
-        Contract::create([
-            'user_id' => $user->id,
-            'room_id' => $room->id,
-            'start_date' => now(),
-            'end_date' => $request->end_date,
-            'status' => 'active',
+        // ✅ สร้าง Contract
+        $contract = Contract::create([
+            'user_id'   => $user->id,
+            'room_id'   => $room->id,
+            'start_date'=> now(),
+            'end_date'  => $request->end_date,
+            'status'    => 'active',
+        ]);
+
+        // ✅ สร้าง Bill อัตโนมัติ
+        \App\Models\Bill::create([
+            'contract_id' => $contract->id,
+            'amount'      => $room->price ?? 3000, // ใช้ราคาห้องหรือค่าคงที่
+            'due_date'    => now()->addMonthNoOverflow(), // ครบกำหนดเดือนหน้า
+            'status'      => 'unpaid',
         ]);
     });
 
-    return redirect()->route('tenant.index')->with('success', 'Tenant added.');
+    return redirect()->route('tenant.index')->with('success', 'Tenant added');
 }
+
 
 public function update(Request $request, $id)
 {

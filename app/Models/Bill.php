@@ -15,6 +15,7 @@ class Bill extends Model
     {
         return $this->belongsTo(Contract::class);
     }
+    protected $fillable = ['contract_id', 'amount', 'due_date', 'status'];
 
     public function payment()
     {
