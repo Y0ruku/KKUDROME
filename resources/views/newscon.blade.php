@@ -24,7 +24,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="/admin/dashboard">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/admin/accountuser">Account user</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Payment Stations</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/paymentstatus">Payment Stations</a></li>
         <li class="nav-item"><a class="nav-link active" href="/admin/announcements">Edit announcement</a></li>
       </ul>
     </div>
