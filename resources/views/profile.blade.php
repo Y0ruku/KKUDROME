@@ -66,7 +66,7 @@
                                 {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                             </div>
                             <div class="text-lg text-gray-600">
-                                เบอร์โทร : {{ Auth::user()->tel }}
+                                เบอร์โทรศัพท์ : {{ Auth::user()->tel }}
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
 
                                     <!-- Phone Number Field -->
                                     <div class="flex items-center text-lg text-gray-600">
-                                        <span class="font-medium">Phone Number :</span>
+                                        <span class="font-medium">เบอร์โทรศัพท์ :</span>
                                         <span id="tel_display" class="ml-2">{{ Auth::user()->tel }}</span>
                                         <input type="text" id="tel_input" name="tel" value="{{ Auth::user()->tel }}"
                                             class="ml-2 border border-gray-300 rounded px-2 py-1"
