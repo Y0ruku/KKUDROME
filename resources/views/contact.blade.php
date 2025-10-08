@@ -55,7 +55,7 @@
                 </p>
                 <p class="text-lg">
                     Our Email:
-                    <a href="mailto:thegreathouse@gmail.com" class="text-blue-600 hover:underline">thegreathouse@gmail.com</a>
+                    <a href="mailto:suphawat.sa@kkumail.com" class="text-blue-600 hover:underline">thegreathouse@gmail.com</a>
                 </p>
             </div>
         </div>

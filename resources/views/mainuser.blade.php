@@ -68,7 +68,7 @@
 
         <div class="bg-white shadow-md rounded-lg text-center p-4 hover:shadow-lg transform transition duration-200 hover:scale-105">
           <a href="/payment" class="font-semibold">Payment</a>
-          <img src="https://cdn-icons-png.flaticon.com/512/2331/2331947.png"
+          <img src="/pic/payment.jpg"
             class="w-12 h-12 mx-auto mt-2" alt="payment icon">
         </div>
 
@@ -85,8 +85,8 @@
   <footer class="bg-gray-900 text-gray-300 mt-8 py-6 text-center">
     <p>Email: thegreathouse@gmail.com</p>
     <div class="flex justify-center gap-6 mt-2">
-      <a href="#" class="hover:text-white">thegreathouse.com</a>
-      <a href="#" class="hover:text-white">facebook.com/thegreathouse</a>
+      <a href="mailto:suphawat.sa@kkumail.com" class="hover:text-white">thegreathouse.com</a>
+      <a href="https://www.facebook.com/computing.kku" class="hover:text-white">facebook.com/thegreathouse</a>
     </div>
     <p class="text-sm mt-2">www.thegreathousethegoodlifestyle.com</p>
   </footer>
