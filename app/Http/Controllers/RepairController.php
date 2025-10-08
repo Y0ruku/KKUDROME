@@ -22,4 +22,12 @@ class RepairController extends Controller
 
         return back()->with('success', 'ส่งข้อความสำเร็จ!');
     }
+    public function recivemassage()
+    {
+        // ดึงข้อความทั้งหมดจากตาราง repairs พร้อมข้อมูลผู้ใช้
+        $repairs = Repair::with('user')->latest()->get();
+
+        return view('Massage', compact('repairs'));
+    }
 }
+

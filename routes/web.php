@@ -55,6 +55,9 @@ Route::middleware(['auth'])->group(function () {
             return view('admindashboard');
         })->name('admin.dashboard');
     });
+   Route::middleware(['admin'])->group(function () {
+        Route::get('/admin/Massage',[RepairController::class, 'recivemassage'])->name('admin.Massage');
+    });
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/profile', function () {
             return view('Adminprofile');
