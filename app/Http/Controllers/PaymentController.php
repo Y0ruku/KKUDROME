@@ -47,13 +47,21 @@ public function updateStatus(Request $request, Payment $payment)
         'status' => 'required|in:approved,rejected'
     ]);
 
+    // ✅ อัปเดตสถานะใน payment
     $payment->status = $request->status;
     $payment->save();
 
+    // ✅ อัปเดตสถานะใน bill ด้วย
+    if ($payment->bill) {
+        $bill = $payment->bill;
+        $bill->status = ($request->status === 'approved') ? 'paid' : 'unpaid';
+        $bill->save();
+    }
+
     return redirect()->back()->with('success', 'Status updated successfully!');
 }
-
+}
    
 
-}
+
 
