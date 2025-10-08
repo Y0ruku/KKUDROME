@@ -31,7 +31,7 @@
     <div class="logo">TheGreatHouse</div>
     <div class="links">
       <a href="/admin/dashboard">Home</a>
-      <a href="/admin/profile">Account user</a>
+      <a href="/admin/accountuser">Account user</a>
       <a href="#">Payment Status</a>
       <a href="/admin/announcements">Edit announcement</a>
     </div>
