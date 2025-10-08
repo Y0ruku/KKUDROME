@@ -22,18 +22,29 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="/admin/dashboard">TheGreatHouse</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="/admin/dashboard">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" href="/admin/accountuser">Account user</a></li>
-        <li class="nav-item"><a class="nav-link" href="/admin/paymentstatus">Payment Stations</a></li>
-        <li class="nav-item"><a class="nav-link" href="/admin/announcements">Edit announcement</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-white" href="/admin/dashboard">TheGreatHouse</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/dashboard') ? 'active-link' : '' }}" href="/admin/dashboard">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/accountuser') ? 'active-link' : '' }}" href="/admin/accountuser">Account user</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/paymentstatus') ? 'active-link' : '' }}" href="/admin/paymentstatus">Payment Stations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/announcements') ? 'active-link' : '' }}" href="/admin/announcements">Edit announcement</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/bills') ? 'active-link' : '' }}" href="/admin/bills">Bill</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 <div class="content-box">
     <div class="d-flex justify-content-between align-items-center mb-4">

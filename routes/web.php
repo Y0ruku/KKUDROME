@@ -66,8 +66,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/profile', function () {
             return view('Adminprofile');
         })->name('admin.profile');
-        Route::get('/bills', [BillController::class, 'index'])->name('bills.index');
-Route::post('/bills', [BillController::class, 'store'])->name('bills.store');
+        Route::get('/admin/bills', [BillController::class, 'index'])->name('bills.index');
+Route::post('/admin/bills', [BillController::class, 'store'])->name('bills.store');
     });
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/paymentstatus',[PaymentController::class, 'index'])->name('admin.paymentstatus');

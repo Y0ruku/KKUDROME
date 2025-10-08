@@ -46,6 +46,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-white {{ request()->is('admin/announcements') ? 'active-link' : '' }}" href="/admin/announcements">Edit announcement</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/bills') ? 'active-link' : '' }}" href="/admin/bills">Bill</a>
+                    </li>
                 </ul>
             </div>
         </div>
